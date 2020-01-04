@@ -4,11 +4,7 @@ This is a simple sms application where a user can send an sms, subscribe sms not
 
 ## Installation
 1. Copy `.env.example` and rename to `.env` and add the appropriate values. Check `Configuration` section for more details.
-2. To install dependencies, run:
-```bash
-gradle wrapper --gradle-version=4.10.3
-```
-3. To start the server, run:
+2. To start the server, run:
 ```bash
 gradle appRun
 ```
