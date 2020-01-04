@@ -1,0 +1,25 @@
+*.swp
+.classpath
+.project
+.settings
+tags
+target
+.idea
+*.iml
+.DS_Store
+
+# Gradle files
+.gradle
+build
+out/*
+gradle
+
+# compiler output
+bin/
+
+Test.java
+Test.class
+libs
+tmp/notification.json
+.env
+.vscode
