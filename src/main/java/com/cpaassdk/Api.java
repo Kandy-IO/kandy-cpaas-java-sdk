@@ -3,22 +3,20 @@ package com.cpaassdk;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.JWT;
-
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.Map;
 import java.util.Properties;
-
 import okhttp3.*;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.json.JSONObject;
 
 public class Api {
-  public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-  OkHttpClient client = new OkHttpClient();
+  public static final MediaType JSON = MediaType.get("application/json");
   public Config config;
   public String userId;
   private String accessToken = null;
@@ -110,7 +108,9 @@ public class Api {
     RequestBody body = null;
 
     if (options.has("body")) {
-      if (options.has("headers") && ((JSONObject) options.get("headers")).get("Content-Type").equals("application/x-www-form-urlencoded")) {
+      if (options.has("headers") &&
+          ((JSONObject) options.get("headers")).has("Content-Type") &&
+          ((JSONObject) options.get("headers")).get("Content-Type").equals("application/x-www-form-urlencoded")) {
         FormBody.Builder formBuilder = new FormBody.Builder();
         JSONObject bodyObj = (JSONObject) options.get("body");
 
@@ -120,7 +120,9 @@ public class Api {
 
         body = formBuilder.build();
       } else {
-        body = RequestBody.create((String) options.get("body").toString(), JSON);
+        Charset charset = Charset.forName("UTF-8");
+        byte[] bytes = options.get("body").toString().getBytes(charset);
+        body = RequestBody.create(bytes, JSON);
       }
     }
 
@@ -128,8 +130,8 @@ public class Api {
   }
 
   private Request.Builder addHeaders(Request.Builder request, JSONObject options, boolean withToken) throws IOException {
-    request.header("Content-Type", "application/json")
-      .addHeader("X-Cpaas-Agent", "java-sdk/" + (String) this.version);
+    request.addHeader("X-Cpaas-Agent", "java-sdk/" + (String) this.version)
+      .addHeader("Accept", "*/*");
 
     JSONObject headers = options.has("headers") ? (JSONObject) options.get("headers") : null;
 

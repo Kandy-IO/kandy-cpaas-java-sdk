@@ -7,6 +7,8 @@ import com.cpaassdk.resources.*;
 public class Client {
   Config config;
   public Twofactor twofactor;
+  public Conversation conversation;
+  public Notification notification;
 
   /**
    * Configure the SDK with clientId and clientSecret.
@@ -33,6 +35,8 @@ public class Client {
       Api api = new Api(this.config);
 
       this.twofactor = new Twofactor(api);
+      this.conversation = new Conversation(api);
+      this.notification = new Notification();
     } catch (IOException e) {
       e.printStackTrace();
     }

@@ -50,7 +50,7 @@ public class TestHelper {
     mock(sequence, null, true, 200);
   }
 
-  private static String tokenBody() {
+  public static String tokenBody() {
     Algorithm algorithm = Algorithm.HMAC256("secret");
     String accessToken = JWT.create()
       .withIssuedAt(new Date())

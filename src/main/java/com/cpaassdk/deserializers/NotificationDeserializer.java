@@ -11,7 +11,7 @@ public class NotificationDeserializer extends BaseDeserializer {
   public String subscriptionId = null;
   public String messageId = null;
   public String type = null;
-  public String notificationDateTime = null;
+  public Long notificationDateTime = null;
   public String message = null;
   public String senderAddress = null;
   public String destinationAddress = null;
@@ -24,7 +24,7 @@ public class NotificationDeserializer extends BaseDeserializer {
     this.type = "inbound";
     this.message = inboundSMSMessage.get("message");
     this.notificationId = (String) notification.get("id");
-    this.notificationDateTime = (String) notification.get("dateTime");
+    this.notificationDateTime = (Long) notification.get("dateTime");
     this.messageId = inboundSMSMessage.get("messageId");
     this.senderAddress = inboundSMSMessage.get("senderAddress");
     this.destinationAddress = inboundSMSMessage.get("destinationAddress");
@@ -36,7 +36,7 @@ public class NotificationDeserializer extends BaseDeserializer {
 
     this.type = "outbound";
     this.notificationId = (String) notification.get("id");
-    this.notificationDateTime = (String) notification.get("dateTime");
+    this.notificationDateTime = (Long) notification.get("dateTime");
     this.message = inboundSMSMessage.get("message");
     this.messageId = inboundSMSMessage.get("messageId");
     this.senderAddress = inboundSMSMessage.get("senderAddress");
@@ -50,7 +50,7 @@ public class NotificationDeserializer extends BaseDeserializer {
     this.type = "subscriptionCancel";
 
     this.notificationId = (String) notification.get("id");
-    this.notificationDateTime = (String) notification.get("dateTime");
+    this.notificationDateTime = (Long) notification.get("dateTime");
     this.subscriptionId = idFrom(links.get(0).get("href"));
   }
 
@@ -61,7 +61,7 @@ public class NotificationDeserializer extends BaseDeserializer {
     this.type = "event";
 
     this.notificationId = (String) notification.get("id");
-    this.notificationDateTime = (String) notification.get("dateTime");
+    this.notificationDateTime = (Long) notification.get("dateTime");
     this.subscriptionId = idFrom(links.get(0).get("href"));
     this.eventDetails.put("eventDescription", (String) notification.get("eventDescription"));
     this.eventDetails.put("eventType", (String) notification.get("eventType"));

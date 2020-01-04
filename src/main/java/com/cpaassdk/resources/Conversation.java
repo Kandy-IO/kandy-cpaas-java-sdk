@@ -43,7 +43,6 @@ public class Conversation extends ConversationDeserializer {
 
   public Conversation createMessage(JSONObject params) throws IOException {
     JSONObject options = new JSONObject();
-
     if (params.get("type").equals(Conversation.types.get("SMS"))) {
       JSONArray destinationAddress = null;
       if (params.get("destinationAddress") instanceof JSONArray) {
@@ -121,7 +120,6 @@ public class Conversation extends ConversationDeserializer {
 
     return null;
   }
-
 
   /**
    * Delete conversation message

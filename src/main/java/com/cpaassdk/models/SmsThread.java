@@ -7,7 +7,7 @@ public class SmsThread {
   public String localAddress = null;
   public long firstMessageTime;
   public long lastMessageTime;
-  public long lastPullTime;
+  // public long lastPullTime;
   public String text = null;
 
   @SuppressWarnings("unchecked")
@@ -19,7 +19,7 @@ public class SmsThread {
 
     this.firstMessageTime = (long) threadDetails.get("firstMessageTime");
     this.lastMessageTime = (long) threadDetails.get("lastMessageTime");
-    this.lastPullTime = (long) threadDetails.get("lastPullTime");
+    // this.lastPullTime = (long) threadDetails.get("lastPullTime");
     this.text = (String) threadDetails.get("lastText");
   }
 }

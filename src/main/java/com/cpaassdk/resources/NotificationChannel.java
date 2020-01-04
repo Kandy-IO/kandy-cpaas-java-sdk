@@ -5,8 +5,7 @@ import java.io.IOException;
 import org.json.JSONObject;
 
 import com.cpaassdk.Api;
-import com.cpaassdk.deserializers.*;
-
+import com.cpaassdk.deserializers.NotificationChannelDeserializer;
 
 public class NotificationChannel extends NotificationChannelDeserializer {
   private String baseUrl = null;
@@ -17,6 +16,8 @@ public class NotificationChannel extends NotificationChannelDeserializer {
 
     this.baseUrl = String.format("/cpaas/notificationchannel/v1/%s", api.userId);
   }
+
+  NotificationChannel() { }
 
   public NotificationChannel createChannel(JSONObject params) throws IOException {
     JSONObject options = new JSONObject();

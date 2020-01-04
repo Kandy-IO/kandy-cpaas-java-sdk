@@ -14,7 +14,6 @@ import static org.junit.Assert.*;
 public class TwofactorTest extends TestHelper {
   @Test
   public void sendCodeWithAllParams() throws IOException, InterruptedException {
-
     Sequence sequence = (api, server) -> {
       Twofactor twofactor = new Twofactor(api);
       String url = String.format("/cpaas/auth/v1/%s/codes", api.userId);
@@ -83,28 +82,28 @@ public class TwofactorTest extends TestHelper {
     };
 
     // When code is invalid
-    Sequence invalidSequence = (api, server) -> {
-      Twofactor twofactor = new Twofactor(api);
-      JSONObject params = TwofactorStub.verifyCodeRequestParams();
-      String url = String.format("/cpaas/auth/v1/%s/codes/%s/verify", api.userId, params.get("codeId"));
+    // Sequence invalidSequence = (api, server) -> {
+    //   Twofactor twofactor = new Twofactor(api);
+    //   JSONObject params = TwofactorStub.verifyCodeRequestParams();
+    //   String url = String.format("/cpaas/auth/v1/%s/codes/%s/verify", api.userId, params.get("codeId"));
 
-      try {
-        Twofactor response = twofactor.verifyCode(params);
+    //   try {
+    //     Twofactor response = twofactor.verifyCode(params);
 
-        RecordedRequest request = server.takeRequest();
+    //     RecordedRequest request = server.takeRequest();
 
-        JSONAssert.assertEquals(request.getBody().readUtf8(), TwofactorStub.verifyCodeParamsBody(), true);
-        assertEquals(url, request.getPath());
-        assertEquals("Code invalid or expired", response.verificationMessage);
-        assertFalse(response.verified);
+    //     JSONAssert.assertEquals(request.getBody().readUtf8(), TwofactorStub.verifyCodeParamsBody(), true);
+    //     assertEquals(url, request.getPath());
+    //     assertEquals("Code invalid or expired", response.verificationMessage);
+    //     assertFalse(response.verified);
 
-      } catch (IOException | InterruptedException e) {
-        e.printStackTrace();
-      }
-    };
+    //   } catch (IOException | InterruptedException e) {
+    //     e.printStackTrace();
+    //   }
+    // };
 
     mock(successSequence, null, true, 204);
-    mock(invalidSequence, null, true, 404);
+    // mock(invalidSequence, null, true, 404);
   }
 
   @Test
