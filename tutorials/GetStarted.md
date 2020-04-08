@@ -1,6 +1,6 @@
 # Get Started
 
-In this quickstart, we will help you dip your toes in before you dive in. This guide will help you get started with the $KANDY$ Node.js SDK.
+In this quickstart, we will help you dip your toes in before you dive in. This guide will help you get started with the $KANDY$ Java SDK.
 
 ## Using the SDK
 
