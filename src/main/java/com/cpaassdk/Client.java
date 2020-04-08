@@ -23,7 +23,7 @@ public class Client {
    * </code>
    * </pre>
    *
-   * @param clientId <b>String</b> Private project secret
+   * @param clientId <b>String</b> Private project key
    * @param clientSecret <b>String</b> Private project secret
    * @param baseUrl <b>String</b> URL of the server to be used.
    *

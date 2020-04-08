@@ -32,9 +32,9 @@ public class Conversation extends ConversationDeserializer {
    * Send a new outbound message
    *
    * @param params <b>JSONObject</b> to hold all params.
-   * @param params.type <b>String</b> <i>Optional</i> Type of conversation. Possible values - SMS. Check conversation.types for more options
+   * @param params.type <b>String</b> Type of conversation. Possible value(s) - sms. Check conversation.types for more options
    * @param params.senderAddress <b>String</b> Sender address information, basically the from address. E164 formatted DID number passed as a value, which is owned by the user. If the user wants to let CPaaS uses the default assigned DID number, this field can either has "default" value or the same value as the userId.
-   * @param params.destinationAddress <b>Array[String] | String</b>
+   * @param params.destinationAddress <b>Array[String] | String</b> Indicates which DID number(s) used as destination for this SMS.
    * @param params.message <b>String</b> SMS text message
    *
    * @return Conversation
@@ -79,7 +79,7 @@ public class Conversation extends ConversationDeserializer {
    * Read all messages in a thread
    *
    * @param params <b>JSONObject</b> to hold all params.
-   * @param params.type <b>String</b> Type of conversation. Possible values - SMS. Check conversation.types for more options
+   * @param params.type <b>String</b> Type of conversation. Possible value(s) - sms. Check conversation.types for more options
    * @param params.remoteAddress <b>String</b> <i>Optional</i> Remote address information while retrieving the SMS history, basically the destination telephone number that user exchanged SMS before. E164 formatted DID number passed as a value.
    * @param params.localAddress <b>String</b> <i>Optional</i> Local address information while retrieving the SMS history, basically the source telephone number that user exchanged SMS before.
    * @param params.query <b>JSONObject</b> <i>Optional</i>
@@ -125,7 +125,7 @@ public class Conversation extends ConversationDeserializer {
    * Delete conversation message
    *
    * @param params <b>JSONObject</b> to hold all params.
-   * @param params.type <b>String</b> Type of conversation. Possible values - SMS. Check conversation.types for more options
+   * @param params.type <b>String</b> Type of conversation. Possible value(s) - sms. Check conversation.types for more options
    * @param params.localAddress <b>String</b> Local address information while retrieving the SMS history, basically the source telephone number that user exchanged SMS before.
    * @param params.remoteAddress <b>String</b> Remote address information while retrieving the SMS history, basically the destination telephone number that user exchanged SMS before. E164 formatted DID number passed as a value.
    * @param params.messageId <b>String</b> <i>Optional</i> Identification of the SMS message. If messageId is not passed then the SMS thread is deleted with all messages.
@@ -153,7 +153,7 @@ public class Conversation extends ConversationDeserializer {
    * Gets all messages.
    *
    * @param params <b>JSONObject</b> to hold all params.
-   * @param params.type <b>String</b> Type of conversation. Possible values - SMS. Check conversation.types for more options
+   * @param params.type <b>String</b> Type of conversation. Possible value(s) - sms. Check conversation.types for more options
    * @param params.localAddress <b>String</b> Local address information while retrieving the SMS history, basically the source telephone number that user exchanged SMS before.
    * @param params.remoteAddress <b>String</b> Remote address information while retrieving the SMS history, basically the destination telephone number that user exchanged SMS before. E164 formatted DID number passed as a value.
    * @param params.query <b>JSONObject</b> <i>Optional</i>
@@ -192,7 +192,7 @@ public class Conversation extends ConversationDeserializer {
    * Read a conversation message status
    *
    * @param params <b>JSONObject</b> to hold all params.
-   * @param params.type <b>String</b> Type of conversation. Possible values - SMS. Check conversation.types for more options
+   * @param params.type <b>String</b> Type of conversation. Possible value(s) - sms. Check conversation.types for more options
    * @param params.localAddress <b>String</b> Local address information while retrieving the SMS history, basically the source telephone number that user exchanged SMS before.
    * @param params.remoteAddress <b>String</b> Remote address information while retrieving the SMS history, basically the destination telephone number that user exchanged SMS before. E164 formatted DID number passed as a value.
    * @param params.messageId <b>String</b> Identification of the SMS message.
@@ -216,7 +216,7 @@ public class Conversation extends ConversationDeserializer {
   /**
    * Read all active subscriptions
    * @param params <b>JSONObject</b> to hold all params.
-   * @param params.type <b>String</b> Type of conversation. Possible values - SMS. Check conversation.types for more options
+   * @param params.type <b>String</b> Type of conversation. Possible value(s) - sms. Check conversation.types for more options
    *
    * @return Conversation
    * @throws IOException Exception raised
@@ -238,7 +238,7 @@ public class Conversation extends ConversationDeserializer {
    * Read active subscription
    *
    * @param params <b>JSONObject</b> to hold all params.
-   * @param params.type <b>String</b> Type of conversation. Possible values - SMS. Check conversation.types for more options
+   * @param params.type <b>String</b> Type of conversation. Possible value(s) - sms. Check conversation.types for more options
    * @param params.subscriptionId <b>String</b> Resource ID of the subscription
    *
    * @return Conversation
@@ -261,8 +261,8 @@ public class Conversation extends ConversationDeserializer {
    * Create a new subscription
    *
    * @param params <b>JSONObject</b> to hold all params.
-   * @param params.type <b>String</b> Type of conversation. Possible values - SMS. Check conversation.types for more options
-   * @param params.webhookURL <b>String</b> The webhook that has been acquired during SMS API subscription, which the incoming notifications supposed to be sent to.
+   * @param params.type <b>String</b> Type of conversation. Possible value(s) - sms. Check conversation.types for more options
+   * @param params.webhookURL <b>String</b> HTTPS URL that is present in your application server which is accessible from the public web where the notifications should be sent to. Note: Should be a POST endpoint.
    * @param params.destinationAddress <b>String</b> <i>optional</i> The address that incoming messages are received for this subscription. If does not exist, CPaaS uses the default assigned DID number to subscribe against. It is suggested to provide the intended E164 formatted DID number within this parameter.
    *
    * @return Conversation

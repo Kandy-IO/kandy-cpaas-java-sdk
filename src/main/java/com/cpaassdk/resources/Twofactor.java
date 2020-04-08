@@ -9,7 +9,6 @@ import com.cpaassdk.deserializers.*;
 
 /**
 * CPaaS provides Authentication API where a two-factor authentication (2FA) flow can be implemented by using that.
-* Sections below describe two sample use cases, two-factor authentication via SMS and two-factor authentication via e-mail
 *
 */
 public class Twofactor extends TwofactorDeserializer {

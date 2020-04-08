@@ -25,4 +25,4 @@ The information about tutorials and documents can be found in the links below
 
 * `Documents`: [docs](https://kandy-io.github.io/kandy-cpaas-java-sdk/docs)
 
-* `Tutorials`:  [Get Started](https://Kandy-IO.github.io/kandy-cpaas-java-sdk/tutorials/?KANDY=Kandy&KANDYFQDN=https://oauth-cpaas.att.com#/GetStarted)
+* `Tutorials`:  [Get Started](https://Kandy-IO.github.io/kandy-cpaas-java-sdk/tutorials/?KANDY=Kandy&KANDYFQDN=oauth-cpaas.att.com#/GetStarted)

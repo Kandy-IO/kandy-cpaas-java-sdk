@@ -54,7 +54,7 @@ import com.cpaassdk.Client;
 const client = createClient({
   "clientId <Private Project key>",
   "clientSecret <Private Project secret>",
-  "$KANDYFQDN$"
+  "https://$KANDYFQDN$"
 })
 ```
 

@@ -43,3 +43,16 @@ dependencies {
     testCompile 'org.skyscreamer:jsonassert:1.5.0'
 }
 
+task generateDocs(type: Javadoc) {
+  source = sourceSets.main.allJava
+  classpath = sourceSets.main.compileClasspath + sourceSets.main.output
+  destinationDir = reporting.file("../../docs")
+  options.overview = "src/overview.html"
+  exclude 'com/cpaassdk/deserializers/*'
+  exclude 'com/cpaassdk/models/*'
+  exclude 'com/cpaassdk/Util.java'
+  exclude 'com/cpaassdk/Api.java'
+  exclude 'com/cpaassdk/Config.java'
+  exclude 'com/cpaassdk/resources/NotificationChannel.java'
+}
+
