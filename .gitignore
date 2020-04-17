@@ -19,3 +19,4 @@ bin/
 Test.java
 Test.class
 scriptcs_bin/
+gradle.properties
