@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import org.junit.Test;
 
-import com.cpaassdk.Config;
-
 public class ConfigTest extends TestHelper {
   @Test
   public void constructor() throws IOException, InterruptedException {

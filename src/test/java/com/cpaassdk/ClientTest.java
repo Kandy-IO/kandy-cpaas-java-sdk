@@ -6,8 +6,6 @@ import java.io.IOException;
 import org.junit.Test;
 import org.json.JSONObject;
 
-import com.cpaassdk.Client;
-
 public class ClientTest extends TestHelper {
   @Test
   public void constructor() throws IOException, InterruptedException {

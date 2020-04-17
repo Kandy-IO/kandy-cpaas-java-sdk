@@ -9,9 +9,6 @@ import org.json.JSONObject;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import com.cpaassdk.Api;
-import com.cpaassdk.Config;
-
 public class ApiTest extends TestHelper {
   @Test
   public void constructor() throws IOException, InterruptedException {
