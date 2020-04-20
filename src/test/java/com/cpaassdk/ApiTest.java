@@ -1,15 +1,14 @@
 package com.cpaassdk;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.IOException;
-import java.util.Properties;
 import okhttp3.mockwebserver.RecordedRequest;
 import org.json.JSONObject;
 import org.junit.*;
 import static org.junit.Assert.*;
 
 public class ApiTest extends TestHelper {
+  final String VERSION = "1.0.0";
+
   @Test
   public void constructor() throws IOException, InterruptedException {
     Sequence sequence = (api, server) -> {
@@ -31,12 +30,6 @@ public class ApiTest extends TestHelper {
 
   @Test
   public void sendRequest() throws IOException, InterruptedException {
-    Properties prop = new Properties();
-    InputStream input = new FileInputStream("gradle.properties");
-
-    prop.load(input);
-    String version = prop.getProperty("VERSION");
-
     JSONObject responseBody = new JSONObject()
       .put("response-key", "response-value");
 
@@ -45,7 +38,7 @@ public class ApiTest extends TestHelper {
         JSONObject response = api.sendRequest("/some-path", "get", new JSONObject(), true);
         RecordedRequest request = server.takeRequest();
 
-        assertEquals(request.getHeader("X-Cpaas-Agent"), "java-sdk/" + (String) version);
+        assertEquals(request.getHeader("X-Cpaas-Agent"), "java-sdk/" + VERSION);
         assertEquals(request.getHeader("Accept"), "*/*");
         assertEquals(request.getPath(), "/some-path");
         assertEquals(response.toString(), responseBody.toString());
@@ -67,7 +60,7 @@ public class ApiTest extends TestHelper {
         JSONObject response = api.sendRequest("/some-path", "post", requestBody, true);
         RecordedRequest request = server.takeRequest();
 
-        assertEquals(request.getHeader("X-Cpaas-Agent"), "java-sdk/" + (String) version);
+        assertEquals(request.getHeader("X-Cpaas-Agent"), "java-sdk/" + VERSION);
         assertEquals(request.getHeader("Accept"), "*/*");
         assertEquals(request.getHeader("header-key"), "header-value");
         assertEquals(request.getPath(), "/some-path");

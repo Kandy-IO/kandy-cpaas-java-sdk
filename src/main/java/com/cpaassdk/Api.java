@@ -3,13 +3,10 @@ package com.cpaassdk;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.JWT;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.Map;
-import java.util.Properties;
 import okhttp3.*;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -23,16 +20,10 @@ public class Api {
   private DecodedJWT accessTokenParsed;
   private DecodedJWT idTokenParsed;
   private String idToken = null;
-  private String version = null;
+  final String VERSION = "1.0.0";
 
   Api(Config config) throws IOException {
     this.config = config;
-
-    Properties prop = new Properties();
-    InputStream input = new FileInputStream("gradle.properties");
-
-    prop.load(input);
-    this.version = prop.getProperty("VERSION");
 
     this.authToken();
   }
@@ -130,7 +121,7 @@ public class Api {
   }
 
   private Request.Builder addHeaders(Request.Builder request, JSONObject options, boolean withToken) throws IOException {
-    request.addHeader("X-Cpaas-Agent", "java-sdk/" + (String) this.version)
+    request.addHeader("X-Cpaas-Agent", "java-sdk/" + VERSION)
       .addHeader("Accept", "*/*");
 
     JSONObject headers = options.has("headers") ? (JSONObject) options.get("headers") : null;
