@@ -1,53 +1,115 @@
 plugins {
-    // Apply the java-library plugin to add support for Java Library
-    id 'java-library'
+  id 'java-library'
+  id 'maven'
+  id 'signing'
 }
 
-apply plugin: 'java'
-
-version = "1.0.0"
-
 repositories {
-    mavenCentral()
+  mavenCentral()
+}
+
+group = 'com.github.kandy-io'
+archivesBaseName = 'cpaassdk'
+version = '1.0.0'
+
+task javadocJar(type: Jar) {
+  classifier = 'javadoc'
+  from javadoc
+}
+
+task sourcesJar(type: Jar) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+artifacts {
+  archives javadocJar, sourcesJar
+}
+
+signing {
+  sign configurations.archives
 }
 
 jar {
-    manifest {
-        attributes 'Main-CLass': 'com.cpaassdk.Client'
-    }
+  manifest {
+    attributes 'Main-CLass': 'com.cpaassdk.Client'
+  }
 
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
+  from {
+    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  }
 }
 
-javadoc {
-    // source = sourceSets.main.allJava
-    // classpath = configurations.compile
+test {
+  testLogging {
+    events 'passed', 'skipped', 'failed'
+    exceptionFormat 'full'
+  }
 }
 
 dependencies {
-    api 'org.apache.commons:commons-math3:3.6.1'
+  implementation 'org.json:json:20190722'
+  implementation 'com.auth0:java-jwt:3.8.3'
+  implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.0.0'
 
-    implementation 'com.google.guava:guava:28.0-jre'
+  testImplementation 'com.squareup.okhttp3:mockwebserver:4.2.2'
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'org.skyscreamer:jsonassert:1.5.0'
+}
 
-    compile 'org.json:json:20190722'
-    compile 'com.auth0:java-jwt:3.8.3'
-    compile 'com.squareup.okhttp3:okhttp:4.2.2'
-    compile 'com.squareup.okhttp3:logging-interceptor:4.0.1'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.0.0'
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-    testImplementation 'com.squareup.okhttp3:mockwebserver:4.2.2'
-    testImplementation 'junit:junit:4.12'
+      repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
 
-    testCompile 'org.skyscreamer:jsonassert:1.5.0'
+      snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      pom.project {
+        name 'CPaaS SDK'
+        packaging 'jar'
+        artifactId 'cpaassdk'
+        description 'SDK to build robust real-time communication applications.'
+        url 'https://github.com/Kandy-IO/kandy-cpaas-java-sdk'
+
+        scm {
+          connection 'scm:git:git@github.com:Kandy-IO/kandy-cpaas-java-sdk'
+          developerConnection 'scm:git:git@github.com:Kandy-IO/kandy-cpaas-java-sdk'
+          url 'https://github.com/Kandy-IO/kandy-cpaas-java-sdk'
+        }
+
+        licenses {
+          license {
+            name 'SEE LICENSE IN LICENSE.md'
+            url 'https://github.com/Kandy-IO/kandy-cpaas-java-sdk/blob/master/LICENSE.md'
+          }
+        }
+
+        developers {
+          developer {
+            id 'keepworks'
+            name 'KeepWorks'
+            email 'kandy-portal@keepworks.com'
+            organization 'com.github.kandy-io'
+            organizationUrl 'https://github.com/Kandy-IO/kandy-cpaas-java-sdk'
+          }
+        }
+      }
+    }
+  }
 }
 
 task generateDocs(type: Javadoc) {
   source = sourceSets.main.allJava
   classpath = sourceSets.main.compileClasspath + sourceSets.main.output
-  destinationDir = reporting.file("../../docs")
-  options.overview = "src/overview.html"
+  destinationDir = reporting.file('../../docs')
+  options.overview = 'src/overview.html'
   exclude 'com/cpaassdk/deserializers/*'
   exclude 'com/cpaassdk/models/*'
   exclude 'com/cpaassdk/Util.java'
