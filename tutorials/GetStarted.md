@@ -4,7 +4,7 @@ In this quickstart, we will help you dip your toes in before you dive in. This g
 
 ## Using the SDK
 
-cpaas-sdk uses Maven. At present the jars are available from a public [maven](https://mvnrepository.com) repository.
+cpaassdk uses Maven. At present the jars are available from a public [maven](https://mvnrepository.com) repository.
 
 Use the following dependency in your project to grab via Maven:
 
