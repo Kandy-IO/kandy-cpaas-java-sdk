@@ -10,9 +10,9 @@ Use the following dependency in your project to grab via Maven:
 
 ```xml
 <dependency>
-  <groupId>com.cpaassdk</groupId>
+  <groupId>com.github.kandy-io</groupId>
   <artifactId>cpaassdk</artifactId>
-  <version>1.X.X</version>
+  <version>1.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -20,7 +20,7 @@ Use the following dependency in your project to grab via Maven:
 or Gradle:
 
 ```
-implementation 'com.cpaassdk:cpaassdk:1.X.X'
+implementation 'com.github.kandy-io:cpaassdk:1.0.0'
 ```
 
 In your application, you simply need to import the library to be able to make use of it.
