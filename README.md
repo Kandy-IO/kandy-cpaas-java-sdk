@@ -1,6 +1,6 @@
-# @kandy-io/cpaas-java-sdk
+# Kandy CPaaS Java SDK
 
-## Installation
+## Install
 
 Use the following dependency in your project to grab via [Maven](https://mvnrepository.com) repository:
 
@@ -19,10 +19,14 @@ or Gradle:
 implementation 'com.com.github.kandy-io:cpaassdk:1.0.0'
 ```
 
-## Reference
+## Documentation
 
 The information about tutorials and documents can be found in the links below
 
-* `Documents`: [docs](https://kandy-io.github.io/kandy-cpaas-java-sdk/docs)
+* `Documents`: [API Docs](https://kandy-io.github.io/kandy-cpaas-java-sdk/docs)
 
-* `Tutorials`:  [Get Started](https://Kandy-IO.github.io/kandy-cpaas-java-sdk/tutorials/?KANDY=Kandy&KANDYFQDN=oauth-cpaas.att.com#/GetStarted)
+* `Tutorials`:  [User Guide](https://Kandy-IO.github.io/kandy-cpaas-java-sdk/tutorials/?KANDY=Kandy&KANDYFQDN=oauth-cpaas.att.com#/GetStarted)
+
+## Compatibility
+
+- Java 1.8 or later
