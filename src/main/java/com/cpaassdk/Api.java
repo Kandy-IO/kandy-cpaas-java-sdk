@@ -174,10 +174,17 @@ public class Api {
     JSONObject body = new JSONObject();
     JSONObject headers = new JSONObject();
 
-    body.put("grant_type", "client_credentials");
     body.put("client_id", this.config.clientId);
-    body.put("client_secret", this.config.clientSecret);
     body.put("scope", "openid");
+
+    if (this.config.clientSecret == null) {
+      body.put("username", this.config.email);
+      body.put("password", this.config.password);
+      body.put("grant_type", "password");
+    } else {
+      body.put("client_secret", this.config.clientSecret);
+      body.put("grant_type", "client_credentials");
+    }
 
     headers.put("Content-Type", "application/x-www-form-urlencoded");
 

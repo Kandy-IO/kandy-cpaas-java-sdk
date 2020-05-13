@@ -23,7 +23,7 @@ response.sentMessage // Sent message
 Before moving to how the response body looks, let's walk through the highlights on the SMS request:
 
 + `{senderAddress}` indicates which DID number that user desires to send the SMS from. It is expected to be an E.164 formatted number.
-    + If `{senderAddress}` field contains `default` keyword, $KANDY$ discovers the default assigned SMS DID number for that project and utilizes it as the sender address.
+    + If `{senderAddress}` field contains `default` keyword, $KANDY$ discovers the default assigned SMS DID number for that project or user and utilizes it as the sender address.
 + `destinationAddress` can either be an array of phone numbers or a single phone number string within the params containing the destinations that corresponding SMS message will be sent. For v1, only one destination is supported on $KANDY$.
 + Address value needs to contain a phone number, ideally in E.164 format. Some valid formats are:
   - +16131234567
@@ -32,7 +32,7 @@ Before moving to how the response body looks, let's walk through the highlights 
   - sip:6131234567@domain
 + `message` field contains the text message in `UTF-8` encoded format.
 
-> The number provided in `senderAddress` field should be purchased by the account and assigned to the project, otherwise $KANDY$ replies back with a Forbidden error.
+> The number provided in `senderAddress` field should be purchased by the account and assigned to the  or user, otherwise $KANDY$ replies back with a Forbidden error.
 
 Now, let's check the successful response:
 
@@ -71,12 +71,12 @@ Conversation response = client.conversation.subscribe(params);
 response.hasError() // true if error present, false if not
 ```
 
-+ `destinationAddress` is an optional parameter to indicate which SMS DID number has been desired to receive SMS messages. Corresponding number should be one of the assigned/purchased numbers of the project, otherwise $KANDY$ replies back with Forbidden error. Also not providing this parameter triggers $KANDY$ to use the default assigned DID number against this project, in which case the response message for the subscription contains the `destinationAddress` field. It is highly recommended to provide `destinationAddress` parameter.
++ `destinationAddress` is an optional parameter to indicate which SMS DID number has been desired to receive SMS messages. Corresponding number should be one of the assigned/purchased numbers of the project or user, otherwise $KANDY$ replies back with Forbidden error. Also not providing this parameter triggers $KANDY$ to use the default assigned DID number against this project or user, in which case the response message for the subscription contains the `destinationAddress` field. It is highly recommended to provide `destinationAddress` parameter.
 + `webhookURL` is a webhook endpoint that is present in your application server which is accessible from the public web. The sms notifications would be delivered to this webhook endpoint and the received notification can be consumed by using the `notification.parse` helper method. The usage of `notification.parse` is explained in Step 2.
 
 
 > + For every number required to receive incoming SMS, there should be an individual subscription.
-> + When a number has been unassigned from a project, all corresponding inbound SMS subscriptions are cancelled and `smsSubscriptionCancellationNotification` notification is sent.
+> + When a number has been unassigned from a project or user, all corresponding inbound SMS subscriptions are cancelled and `smsSubscriptionCancellationNotification` notification is sent.
 
 Now, you are ready to receive inbound SMS messages via the webhook endpoint, for example - 'https://myapp.com/inbound-sms/webhook'. For more information about webhook and subscription, you can refer the [SMS starter app](https://github.com/Kandy-IO/kandy-cpaas-java-sdk/tree/v1.0.0/examples/sms).
 

@@ -14,29 +14,46 @@
       "private project secret",
       "base url"
     );
-    </pre>
-    <table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Client">
-      <caption><span>Parameters</span><span class="tabEnd">&nbsp;</span></caption>
-      <thead>
-        <tr>
-          <th class="colFirst" scope="col">Name</th>
-          <th class="colLast" scope="col">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="altColor">
-          <td class="colFirst">clientId</td>
-          <td class="colLast">Private project key</td>
-        </tr>
-        <tr class="rowColor">
-          <td class="colFirst">clientSecret</td>
-          <td class="colLast">Private project secret</td>
-        </tr>
-        <tr class="altColor">
-          <td class="colFirst">baseUrl</td>
-          <td class="colLast">URL of the server to be used</td>
-        </tr>
-      </tbody>
-    </table>
+
+    // or
+
+    Client client = new Client(
+      "account client id",
+      "account email",
+      "account password",
+      "base url"
+    );
+  </pre>
+  <table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Client">
+    <caption><span>Parameters</span><span class="tabEnd">&nbsp;</span></caption>
+    <thead>
+      <tr>
+        <th class="colFirst" scope="col">Name</th>
+        <th class="colLast" scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="altColor">
+        <td class="colFirst">clientId</td>
+        <td class="colLast">Private project key</td>
+      </tr>
+      <tr class="rowColor">
+        <td class="colFirst">clientSecret</td>
+        <td class="colLast">Private project secret</td>
+      </tr>
+      <tr class="altColor">
+        <td class="colFirst">email</td>
+        <td class="colLast">Account login email.</td>
+      </tr>
+      <tr class="rowColor">
+        <td class="colFirst">password</td>
+        <td class="colLast">Account login password.</td>
+      </tr>
+      <tr class="altColor">
+        <td class="colFirst">baseUrl</td>
+        <td class="colLast">URL of the server to be used</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>

@@ -16,7 +16,7 @@ The following diagram explains a sample use case and its logical flow for two-fa
 6. MyApp web server sends validation request to $KANDY$ with the code user entered and receives the result
 7. MyApp web page takes the action based on the result
 
-Your $KANDY$ admin can purchase SMS DID and assign to the MyApp project, so that the two-factor authentication SMS sent to app users always has the same originating number seen on the phone. Otherwise, the number seen on app users' phones may differ per transaction.
+Your $KANDY$ admin can purchase SMS DID and assign to the MyApp project or user, so that the two-factor authentication SMS sent to app users always has the same originating number seen on the phone. Otherwise, the number seen on app users' phones may differ per transaction.
 
 First, MyApp web server sends request to send a two-factor authentication code:
 

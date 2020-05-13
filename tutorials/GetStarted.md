@@ -38,12 +38,18 @@ After you've created your instance of the SDK, you can begin playing around with
 ## Configuration
 Before starting, you need to learn following information from your CPaaS account, specifically from Developer Portal.
 
-Log into your Developer Portal account and the configuration information required to be authenticated should be under:
+If you want to authenticate using CPaaS account's credentials, the configuration information required should be under:
+
++ `Home` -> `Personal Profile` (top right corner) -> `Details`
+> + `Email` should be mapped to `email`
+> + Your account password should be mapped to `password`
+> + `Account client ID` should be mapped to `client_id`
+
+Alternatively if you want to use your project's credentials, the configuration information required should be under:
 
 + `Projects` -> `{your project}` -> `Project info`/`Project secret`
-
-> + `Private Project key` should be mapped to `clientId`
-> + `Private Project secret` should be mapped to `clientSecret`
+> + `Private Project key` should be mapped to `client_id`
+> + `Private Project secret` should be mapped to `client_secret`
 
 Instantiating the library can be done by providing a configuration object to the library factory as shown below.
 
@@ -51,11 +57,20 @@ Instantiating the library can be done by providing a configuration object to the
 import com.cpaassdk.Client;
 
 // Initialize
-const client = createClient({
+const client = Client(
   "clientId <Private Project key>",
   "clientSecret <Private Project secret>",
   "https://$KANDYFQDN$"
-})
+)
+
+// or
+
+const client = Client(
+  "clientId <Account Client ID>",
+  "email <Account Email>",
+  "password <Account Password>",
+  "https://$KANDYFQDN$"
+)
 ```
 
 ## Usage
