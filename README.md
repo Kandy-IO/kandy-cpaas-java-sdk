@@ -8,7 +8,7 @@ Use the following dependency in your project to grab via [Maven](https://mvnrepo
 <dependency>
   <groupId>com.github.kandy-io</groupId>
   <artifactId>cpaassdk</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -16,7 +16,7 @@ Use the following dependency in your project to grab via [Maven](https://mvnrepo
 or Gradle:
 
 ```
-implementation 'com.com.github.kandy-io:cpaassdk:1.0.0'
+implementation 'com.github.kandy-io:cpaassdk:1.1.0'
 ```
 
 ## Documentation

@@ -7,7 +7,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class ApiTest extends TestHelper {
-  final String VERSION = "1.0.0";
+  final String VERSION = "1.1.0";
 
   @Test
   public void constructor() throws IOException, InterruptedException {
