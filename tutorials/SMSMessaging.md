@@ -78,7 +78,7 @@ response.hasError() // true if error present, false if not
 > + For every number required to receive incoming SMS, there should be an individual subscription.
 > + When a number has been unassigned from a project or user, all corresponding inbound SMS subscriptions are cancelled and `smsSubscriptionCancellationNotification` notification is sent.
 
-Now, you are ready to receive inbound SMS messages via the webhook endpoint, for example - 'https://myapp.com/inbound-sms/webhook'. For more information about webhook and subscription, you can refer the [SMS starter app](https://github.com/Kandy-IO/kandy-cpaas-java-sdk/tree/v1.1.0/examples/sms).
+Now, you are ready to receive inbound SMS messages via the webhook endpoint, for example - 'https://myapp.com/inbound-sms/webhook'. For more information about webhook and subscription, you can refer the [SMS starter app](https://github.com/Kandy-IO/kandy-cpaas-java-sdk/tree/v1.1.1/examples/sms).
 
 ### Step 2: Receiving notification
 An inbound SMS notification received by your webhook endpoint can be parsed by using the `notification.parse` method:
@@ -135,7 +135,7 @@ With the help of this notification, clients can sync their view on sent SMS mess
 > For trial users, maximum number of SMS messages stored is 1000. When new messages are inserted to history, oldest ones are being removed.
 
 ## Example
-To learn more, check the [SMS starter app](https://github.com/Kandy-IO/kandy-cpaas-java-sdk/tree/v1.1.0/examples/sms).
+To learn more, check the [SMS starter app](https://github.com/Kandy-IO/kandy-cpaas-java-sdk/tree/v1.1.1/examples/sms).
 
 ## References
 For all SMS related method details, refer to [SMS](/developer/references/java/1.1.0#sms-send).
