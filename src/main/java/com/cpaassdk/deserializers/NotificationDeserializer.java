@@ -2,6 +2,7 @@ package com.cpaassdk.deserializers;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class NotificationDeserializer extends BaseDeserializer {
   public String message = null;
   public String senderAddress = null;
   public String destinationAddress = null;
-  public Map<String, String> eventDetails = null;
+  public Map<String, String> eventDetails = new HashMap<String, String>();
 
   @JsonProperty("inboundSMSMessageNotification")
   private void unpackInboundSMSMessageNotification(Map<String, Object> notification) {
@@ -32,7 +33,7 @@ public class NotificationDeserializer extends BaseDeserializer {
 
   @JsonProperty("outboundSMSMessageNotification")
   private void unpackOutboundSMSMessageNotification(Map<String, Object> notification) {
-    Map<String, String> inboundSMSMessage = (Map<String, String>) notification.get("inboundSMSMessage");
+    Map<String, String> inboundSMSMessage = (Map<String, String>) notification.get("outboundSMSMessage");
 
     this.type = "outbound";
     this.notificationId = (String) notification.get("id");
@@ -45,7 +46,7 @@ public class NotificationDeserializer extends BaseDeserializer {
 
   @JsonProperty("smsSubscriptionCancellationNotification")
   private void unpackSmsSubscriptionCancellationNotification(Map<String, Object> notification) {
-    List<Map<String, String>> links = (List<Map<String, String>>) notification.get("links");
+    List<Map<String, String>> links = (List<Map<String, String>>) notification.get("link");
 
     this.type = "subscriptionCancel";
 
@@ -56,7 +57,7 @@ public class NotificationDeserializer extends BaseDeserializer {
 
   @JsonProperty("smsEventNotification")
   private void unpackSmsEventNotification(Map<String, Object> notification) {
-    List<Map<String, String>> links = (List<Map<String, String>>) notification.get("links");
+    List<Map<String, String>> links = (List<Map<String, String>>) notification.get("link");
 
     this.type = "event";
 
