@@ -20,7 +20,7 @@ public class Api {
   private DecodedJWT accessTokenParsed;
   private DecodedJWT idTokenParsed;
   private String idToken = null;
-  final String VERSION = "1.1.1";
+  final String VERSION = "1.1.2";
 
   Api(Config config) throws IOException {
     this.config = config;
