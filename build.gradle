@@ -26,8 +26,11 @@ artifacts {
   archives javadocJar, sourcesJar
 }
 
-signing {
-  sign configurations.archives
+if (project.hasProperty("signing.keyId")) {
+  apply plugin: 'signing'
+  signing {
+      sign configurations.archives
+  }
 }
 
 jar {
@@ -64,11 +67,11 @@ uploadArchives {
       beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
       repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
-        authentication(userName: ossrhUsername, password: ossrhPassword)
+        authentication(userName: hasProperty('ossrhUsername')?ossrhUsername:'', password: hasProperty('ossrhPassword')?ossrhPassword:'')
       }
 
       snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
-        authentication(userName: ossrhUsername, password: ossrhPassword)
+        authentication(userName: hasProperty('ossrhUsername')?ossrhUsername:'', password: hasProperty('ossrhPassword')?ossrhPassword:'')
       }
 
       pom.project {
@@ -117,4 +120,3 @@ task generateDocs(type: Javadoc) {
   exclude 'com/cpaassdk/Config.java'
   exclude 'com/cpaassdk/resources/NotificationChannel.java'
 }
-
