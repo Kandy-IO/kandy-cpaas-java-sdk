@@ -18,6 +18,9 @@ public class TwofactorDeserializer extends BaseDeserializer {
     if (code == 204) {
       this.verified = true;
       this.verificationMessage = "Success";
+    } else {
+      this.verified = false;
+      this.verificationMessage = "Code invalid or expired";
     }
   }
 
